@@ -3,7 +3,7 @@ import { gsap, NO_PREFERENCE_MOTION } from '@/lib/animations/gsap';
 import { horizontalScroll } from '@/lib/animations/effects';
 
 const CHAPTERS = [
-  { n: '01', title: 'ASK', line: 'Ask naturally.', body: 'Type a question the way you would say it. No menus to hunt through, no keywords to guess.' },
+  { n: '01', title: 'CONNECT TO REDORA AI', line: 'Intelligence that listens.', body: 'Have a natural conversation and turn your questions into clear, useful actions.' },
   { n: '02', title: 'UNDERSTAND', line: 'Redora finds the relevant information.', body: 'The question is matched against Redora’s own knowledge base. Only the few relevant articles are used, so answers stay accurate and fast.' },
   { n: '03', title: 'SOLVE', line: 'Get clear next steps.', body: 'You get steps you can follow, or the right support channel when a human is the better answer.' },
 ];
@@ -43,7 +43,7 @@ export function HowItWorks() {
             <div className={c.n === '01' ? 'relative grid w-full items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)] lg:gap-12' : 'relative max-w-2xl'}>
               <div>
                 <p className="font-display text-xl text-crimson-soft">Chapter {c.n}</p>
-                <h3 className="display-xl mt-3">{c.title}</h3>
+                <h3 className={c.n === '01' ? 'display mt-3 text-[clamp(1.5rem,4.75vw,4.25rem)]' : 'display-xl mt-3'}>{c.title}</h3>
                 <p className="mt-6 font-display text-3xl text-fg sm:text-4xl">{c.line}</p>
                 <p className="mt-5 max-w-lg text-lg leading-relaxed text-fg-dim">{c.body}</p>
               </div>
