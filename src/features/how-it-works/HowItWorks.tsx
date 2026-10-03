@@ -40,11 +40,23 @@ export function HowItWorks() {
         {CHAPTERS.map((c) => (
           <article key={c.n} className="story-panel relative flex min-h-[70svh] items-center px-5 py-20 sm:px-8 lg:px-[8vw]">
             <span aria-hidden="true" className="display pointer-events-none absolute right-[4vw] top-1/2 -translate-y-1/2 text-[28vw] leading-none text-white/[0.025] lg:text-[22vw]">{c.n}</span>
-            <div className="relative max-w-2xl">
-              <p className="font-display text-xl text-crimson-soft">Chapter {c.n}</p>
-              <h3 className="display-xl mt-3">{c.title}</h3>
-              <p className="mt-6 font-display text-3xl text-fg sm:text-4xl">{c.line}</p>
-              <p className="mt-5 max-w-lg text-lg leading-relaxed text-fg-dim">{c.body}</p>
+            <div className={c.n === '01' ? 'relative grid w-full items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)] lg:gap-12' : 'relative max-w-2xl'}>
+              <div>
+                <p className="font-display text-xl text-crimson-soft">Chapter {c.n}</p>
+                <h3 className="display-xl mt-3">{c.title}</h3>
+                <p className="mt-6 font-display text-3xl text-fg sm:text-4xl">{c.line}</p>
+                <p className="mt-5 max-w-lg text-lg leading-relaxed text-fg-dim">{c.body}</p>
+              </div>
+              {c.n === '01' && (
+                <img
+                  src="/robot-ask-section.png"
+                  alt="Redora AI robot welcoming visitors"
+                  className="mx-auto h-[48svh] w-full max-w-sm object-contain drop-shadow-[0_24px_60px_rgba(229,9,20,.25)] sm:max-w-md lg:h-[68svh] lg:max-w-none"
+                  width="768"
+                  height="1152"
+                  loading="lazy"
+                />
+              )}
             </div>
           </article>
         ))}

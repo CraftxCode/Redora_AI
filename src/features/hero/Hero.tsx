@@ -5,23 +5,22 @@ import { splitReveal } from '@/lib/animations/effects';
 import { useGsap } from '@/lib/animations/useGsap';
 import { Button } from '@/shared/components/Button';
 import { SplitText } from '@/shared/components/SplitText';
-import { HeroConsole } from './HeroConsole';
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
-  const consoleRef = useRef<HTMLDivElement>(null);
+  const robotRef = useRef<HTMLDivElement>(null);
   const { openPanel } = useChat();
 
   useGsap(ref, (el) => {
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
     el.querySelectorAll('[data-split]').forEach((n, i) => splitReveal(n, { scroll: false, delay: 0.25 + i * 0.12 }));
     tl.from('[data-hero-fade]', { y: 22, autoAlpha: 0, stagger: 0.12, duration: 0.9, delay: 0.7 }, 0);
-    if (consoleRef.current) {
-      tl.from(consoleRef.current, { y: 90, rotateX: -18, rotateY: 10, scale: 0.92, autoAlpha: 0, transformPerspective: 1100, duration: 1.4, ease: 'power4.out' }, 0.5);
+    if (robotRef.current) {
+      tl.from(robotRef.current, { y: 50, rotateX: -12, rotateY: 8, scale: 0.94, autoAlpha: 0, transformPerspective: 1100, duration: 1.4, ease: 'power4.out' }, 0.5);
     }
-    if (hasFinePointer() && consoleRef.current) {
-      const rx = gsap.quickTo(consoleRef.current, 'rotationX', { duration: 0.8, ease: 'power3.out' });
-      const ry = gsap.quickTo(consoleRef.current, 'rotationY', { duration: 0.8, ease: 'power3.out' });
+    if (hasFinePointer() && robotRef.current) {
+      const rx = gsap.quickTo(robotRef.current, 'rotationX', { duration: 0.8, ease: 'power3.out' });
+      const ry = gsap.quickTo(robotRef.current, 'rotationY', { duration: 0.8, ease: 'power3.out' });
       const glow = el.querySelector('[data-hero-glow]');
       const gx = glow ? gsap.quickTo(glow, 'x', { duration: 1.2, ease: 'power3.out' }) : null;
       const gy = glow ? gsap.quickTo(glow, 'y', { duration: 1.2, ease: 'power3.out' }) : null;
@@ -59,8 +58,15 @@ export function Hero() {
             <Button variant="ghost" href="#features">EXPLORE FEATURES</Button>
           </div>
         </div>
-        <div ref={consoleRef} className="flex justify-center lg:justify-end" style={{ transformStyle: 'preserve-3d' }}>
-          <HeroConsole />
+        <div ref={robotRef} className="relative flex justify-center lg:justify-end" style={{ transformStyle: 'preserve-3d' }}>
+          <img
+            src="/redora-robot.png"
+            alt="Redora AI robot mascot"
+            className="relative w-full max-w-[540px] object-contain drop-shadow-[0_24px_60px_rgba(229,9,20,.2)]"
+            width="768"
+            height="768"
+            fetchPriority="high"
+          />
         </div>
       </div>
     </section>
