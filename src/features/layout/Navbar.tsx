@@ -30,7 +30,10 @@ export function Navbar() {
 
   useEffect(() => {
     if (!barRef.current || prefersReducedMotion()) return;
-    gsap.from(barRef.current, { y: -24, autoAlpha: 0, duration: 0.9, ease: 'power3.out', delay: 0.1 });
+    const context = gsap.context(() => {
+      gsap.from(barRef.current, { y: -12, duration: 0.45, ease: 'power3.out' });
+    }, barRef);
+    return () => context.revert();
   }, []);
 
   useEffect(() => {
@@ -47,7 +50,7 @@ export function Navbar() {
     <header
       ref={barRef}
       className={cn(
-        'fixed inset-x-0 top-0 z-40 border-b transition-[height,background-color,border-color,box-shadow,backdrop-filter] duration-500',
+        'fixed inset-x-0 top-0 z-50 border-b transition-[height,background-color,border-color,box-shadow,backdrop-filter] duration-500',
         scrolled ? 'h-[60px] border-line-1 bg-ink-950/70 shadow-[0_8px_40px_-20px_rgba(229,9,20,.55)] backdrop-blur-xl' : 'h-20 border-transparent bg-transparent',
       )}
     >
