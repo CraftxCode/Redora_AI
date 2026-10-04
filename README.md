@@ -1,92 +1,327 @@
-# Redora AI — *Support that actually understands.*
+<div align="center">
 
-A premium, cinematic AI customer-support web app for **Redora**, a **fictional** digital-workspace platform.
-Portfolio / educational project — **Designed & Developed by Muhammad Umar**.
+<img src="docs/assets/banner.svg" alt="Redora AI: Support that actually understands" width="100%"/>
 
-> Redora is not a real company. Every plan, price, policy, email and URL is DEMO data.
+<br/>
 
-## Quick start
+<a href="https://github.com/CraftxCode/Redora_AI">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&duration=2800&pause=900&color=FF3030&center=true&vCenter=true&width=720&height=44&lines=ASK.;UNDERSTAND.;SOLVE.;Support+that+actually+understands." alt="Typing animation: Ask. Understand. Solve." />
+</a>
+
+<br/>
+
+<img src="https://img.shields.io/badge/React-19-E50914?style=for-the-badge&logo=react&logoColor=white&labelColor=0C0C0C" alt="React"/>
+<img src="https://img.shields.io/badge/TypeScript-strict-FF3030?style=for-the-badge&logo=typescript&logoColor=white&labelColor=0C0C0C" alt="TypeScript"/>
+<img src="https://img.shields.io/badge/Vite-8-E50914?style=for-the-badge&logo=vite&logoColor=white&labelColor=0C0C0C" alt="Vite"/>
+<img src="https://img.shields.io/badge/Tailwind-3-FF3030?style=for-the-badge&logo=tailwindcss&logoColor=white&labelColor=0C0C0C" alt="Tailwind CSS"/>
+<br/>
+<img src="https://img.shields.io/badge/GSAP-ScrollTrigger-E50914?style=for-the-badge&logo=greensock&logoColor=white&labelColor=0C0C0C" alt="GSAP"/>
+<img src="https://img.shields.io/badge/Node.js-Express-FF3030?style=for-the-badge&logo=nodedotjs&logoColor=white&labelColor=0C0C0C" alt="Node.js and Express"/>
+<img src="https://img.shields.io/badge/Pollinations-AI-E50914?style=for-the-badge&logoColor=white&labelColor=0C0C0C" alt="Pollinations AI"/>
+<img src="https://img.shields.io/badge/Tests-39_passing-FF3030?style=for-the-badge&logo=vitest&logoColor=white&labelColor=0C0C0C" alt="39 tests passing"/>
+
+<br/><br/>
+
+<a href="#-watch-the-video"><b>Video</b></a> &nbsp;•&nbsp;
+<a href="#-quick-start"><b>Quick start</b></a> &nbsp;•&nbsp;
+<a href="#-how-a-message-is-answered"><b>How it works</b></a> &nbsp;•&nbsp;
+<a href="#-architecture"><b>Architecture</b></a> &nbsp;•&nbsp;
+<a href="#-testing"><b>Tests</b></a> &nbsp;•&nbsp;
+<a href="#-author"><b>Author</b></a>
+
+</div>
+
+<img src="docs/assets/divider.svg" width="100%" alt=""/>
+
+## 🎬 Watch the video
+
+<div align="center">
+
+<a href="https://youtu.be/ckty7wyxhMA" title="Watch the Redora AI walkthrough on YouTube">
+  <img src="docs/assets/thumbnail.png" alt="Redora AI video: I built an AI support that understands" width="860"/>
+</a>
+
+<br/>
+
+<a href="https://youtu.be/ckty7wyxhMA"><img src="https://img.shields.io/badge/▶_Watch_on_YouTube-E50914?style=for-the-badge&logo=youtube&logoColor=white&labelColor=0C0C0C" alt="Watch on YouTube"/></a>
+
+</div>
+
+<img src="docs/assets/divider.svg" width="100%" alt=""/>
+
+## 🔴 About
+
+**Redora AI** is a premium, responsive AI customer-support web app with a cinematic **black and crimson** interface and a support assistant that is genuinely useful.
+
+It is a portfolio and educational project for **Redora**, a **fictional** digital-workspace platform. Every plan, price, policy, email and URL is **DEMO data**. The assistant, the code and the architecture are real.
+
+<table>
+<tr>
+<td width="62%" valign="top">
+
+**The idea:** most support bots either call an AI for everything (slow and costly) or follow rigid scripts (frustrating). Redora AI does both well:
+
+- Common questions are answered **instantly** from a local knowledge base.
+- Open-ended questions go to the AI, with **only the few relevant articles** as context.
+- It **never leaves the user without help**. If the AI is down, you still get the best local answer plus clear next steps.
+
+</td>
+<td width="38%" align="center">
+<img src="docs/assets/robot.png" alt="Redora AI mascot: a friendly robot wrapped in a crimson ribbon" width="260"/>
+</td>
+</tr>
+</table>
+
+<img src="docs/assets/divider.svg" width="100%" alt=""/>
+
+## ✨ Highlights
+
+| | Feature | What it means |
+|:-:|---|---|
+| ⚡ | **Local-first answers** | Plans, password reset, billing, security and contact questions never use an AI request |
+| 🧠 | **Smart routing** | A pure router sends short, confident questions to the knowledge base and conversational ones to the AI |
+| 🛡️ | **Secure by design** | Passwords, OTPs, card numbers, CVVs and API secrets are detected, redacted and never sent |
+| 🔁 | **Resilient** | One AI request per message, a timeout, one retry for transient errors, and a rate limiter |
+| 🧯 | **Graceful failure** | Clear error message with **Try Again**, **Browse Support Topics** and **Contact Support** |
+| 🚫 | **No dead ends** | A response guard replaces any "I don't know" reply with guidance and a next step |
+| 🎞️ | **Cinematic motion** | GSAP and ScrollTrigger: split-text reveals, horizontal storytelling, parallax and magnetic buttons |
+| ♿ | **Accessible** | Keyboard navigation, ARIA live chat log, visible focus and `prefers-reduced-motion` support |
+| 🧪 | **Tested** | 39 automated tests for retrieval, routing, safety, the orchestrator, cache and the API |
+
+<img src="docs/assets/divider.svg" width="100%" alt=""/>
+
+## 🧭 How a message is answered
+
+Each message passes a few gates in order. It only moves down if nothing above could answer it, and each gate is cheaper than the one below.
+
+```mermaid
+flowchart TD
+    A([User message]) --> B{Contains a secret?}
+    B -- yes --> W[⚠️ Warning shown<br/>nothing is sent]
+    B -- no --> C{Topic chip or<br/>unsupported service?}
+    C -- yes --> L1[⚡ Instant catalog answer]
+    C -- no --> D{High-confidence<br/>local match?}
+    D -- yes --> L2[⚡ Instant best-match answer]
+    D -- no --> E{Seen in the<br/>last 24 hours?}
+    E -- yes --> K[💾 Saved AI answer]
+    E -- no --> F[🤖 One AI request<br/>top 3 articles as context]
+    F -- success --> G[✅ Guarded answer<br/>max 400 words]
+    F -- failure --> H[🧯 Error actions +<br/>best local answer]
+
+    classDef free fill:#2a0a0d,stroke:#E50914,color:#F5F5F5;
+    classDef ai fill:#111,stroke:#FF6666,color:#F5F5F5;
+    classDef warn fill:#3a0c10,stroke:#FF3030,color:#fff;
+    class L1,L2,K,G free;
+    class F,H ai;
+    class W warn;
+```
+
+> Four of the five outcomes use **no new AI request**. That is how the project stays fast and free-tier friendly.
+
+<img src="docs/assets/divider.svg" width="100%" alt=""/>
+
+## 🧰 Tech stack
+
+| Layer | Technology |
+|---|---|
+| **Frontend** | React 19, TypeScript (strict), Vite, Tailwind CSS 3, Lucide React |
+| **Motion** | GSAP and ScrollTrigger, with CSS for the background (no canvas or 3D engine) |
+| **Backend** | Node.js, Express 5, Helmet, Zod |
+| **AI** | Pollinations (OpenAI-compatible chat completions), called only from the server |
+| **Knowledge** | Local structured knowledge base with keyword retrieval (no vector database) |
+| **Quality** | Vitest, strict TypeScript across client, server and tooling |
+
+<img src="docs/assets/divider.svg" width="100%" alt=""/>
+
+## 🚀 Quick start
+
+**Requirements:** Node.js 20 or newer.
 
 ```bash
+git clone https://github.com/CraftxCode/Redora_AI.git
+cd Redora_AI
 npm install
-cp .env.example .env     # optional — the app runs without a key
-npm run dev              # web: http://localhost:5173  ·  api: http://localhost:8787
+npm run dev
 ```
 
-Requires Node 20+. The assistant works with **no API key**: common questions are answered locally, and the
-Pollinations anonymous tier is used for open-ended ones. Add `POLLINATIONS_API_KEY` (server-side only) for better limits.
+Then open **http://localhost:5173**. The API runs on `http://localhost:8787`.
 
-| Script | What it does |
-| --- | --- |
-| `npm run dev` | Vite + Express (with watch) together |
-| `npm test` | Vitest: retrieval, routing, safety, orchestrator, cache, API (39 tests) |
+The app works **without any API key**: common questions are answered locally, and the Pollinations anonymous tier is used for open-ended ones.
+
+### 🔑 Add your Pollinations key (optional, recommended)
+
+1. Create a **secret (server-side)** key at [enter.pollinations.ai](https://enter.pollinations.ai).
+2. Copy the example file and edit it:
+
+   ```bash
+   cp .env.example .env        # Windows: copy .env.example .env
+   ```
+
+   ```env
+   POLLINATIONS_API_KEY=your_secret_key_here
+   POLLINATIONS_MODEL=openai
+   POLLINATIONS_API_URL=https://gen.pollinations.ai/v1/chat/completions
+   ```
+3. Restart `npm run dev`, then open `http://localhost:8787/api/health`. You should see `"keyConfigured": true`.
+
+> 🔒 The key lives only in the server's environment. It is never bundled into the React app and never logged.
+
+### 📜 Scripts
+
+| Command | What it does |
+|---|---|
+| `npm run dev` | Starts Vite and the Express API together, with watch mode |
+| `npm test` | Runs all 39 Vitest tests |
 | `npm run typecheck` | Strict TypeScript for client, server and tooling |
-| `npm run build` | Typecheck + production build to `dist/` |
-| `npm start` | Express serves the API **and** `dist/` on `PORT` (default 8787) |
+| `npm run build` | Typecheck and production build to `dist/` |
+| `npm start` | Express serves the API **and** the built site on `PORT` (default `8787`) |
 
-Production: `npm run build && npm start`, then open http://localhost:8787.
+### ⚙️ Environment variables
 
-## How a message is answered (free-tier-first)
+| Variable | Default | Purpose |
+|---|---|---|
+| `POLLINATIONS_API_KEY` | *(empty)* | Server-side key (optional) |
+| `POLLINATIONS_MODEL` | `openai` | Text model name |
+| `POLLINATIONS_API_URL` | Pollinations chat completions URL | AI endpoint |
+| `PORT` | `8787` | API port |
+| `AI_TIMEOUT_MS` | `20000` | Per-request AI timeout |
+| `AI_MAX_TOKENS` | `650` | Reply length cap |
+| `RATE_LIMIT_PER_MINUTE` | `20` | Per-IP limit on `/api/chat` |
+| `CORS_ORIGINS` | *(empty)* | Comma-separated origins, only if the web app is hosted elsewhere |
+| `LOG_LEVEL` | `info` | `debug`, `info`, `warn` or `error` |
 
+<img src="docs/assets/divider.svg" width="100%" alt=""/>
+
+## 🏗️ Architecture
+
+Dependencies point one way only. The `domain` and `data` layers are framework-free and compiled into **both** the browser and the server, so the retriever, router, contracts and safety rules exist exactly once.
+
+```mermaid
+flowchart LR
+    subgraph Browser["🌐 Browser · React + Vite"]
+        UI[Features / UI] --> ST[Chat state]
+        ST --> OR[ChatOrchestrator]
+        OR --> CA[Cache + API client]
+    end
+    subgraph Server["🖥️ Server · Express"]
+        PL[Pipeline<br/>helmet · limits · zod] --> CS[ChatService]
+        CS --> PR[AiProvider port]
+        CS --> RG[Response guard]
+    end
+    subgraph Shared["🧩 Shared domain + knowledge base"]
+        SH[Contracts · retriever · router · safety rules]
+    end
+    CA <-- "POST /api/chat" --> PL
+    PR <--> PO[(Pollinations AI)]
+    Browser -.uses.- Shared
+    Server -.uses.- Shared
+
+    classDef box fill:#111,stroke:#E50914,color:#F5F5F5;
+    classDef ext fill:#2a0a0d,stroke:#FF3030,color:#fff;
+    class UI,ST,OR,CA,PL,CS,PR,RG,SH box;
+    class PO ext;
 ```
-Browser ─► safety check ─► topic chip? ─► unsupported-integration rule ─► local retrieval
-                                                                         │ high confidence & simple → instant local answer
-                                                                         ▼
-                                           cache hit? ─► else POST /api/chat ─► retrieve top 3 articles
-                                                                         ─► Pollinations (1 call, +1 retry on 5xx/timeout)
-                                                                         ─► response guard ─► browser
+
+### 📁 Project structure
+
+```text
+Redora_AI/
+├── server/                     Express API
+│   ├── index.ts                composition root
+│   ├── app.ts                  middleware order and routes
+│   ├── config/env.ts           validated env (the only place process.env is read)
+│   ├── lib/                    logger (redacts secrets), AppError, retry
+│   ├── middleware/             errorHandler, rateLimiter, validateBody, cors
+│   └── modules/
+│       ├── ai/                 AiProvider port + PollinationsProvider
+│       └── chat/               routes → controller → ChatService → prompt + guard
+├── src/
+│   ├── domain/                 pure, shared: contracts, retriever, router, safety
+│   ├── data/                   redoraFacts.ts + knowledge/* (single source of truth)
+│   ├── services/               HTTP adapter (zod-validated, typed errors)
+│   ├── features/               chat, hero, demo, how-it-works, plans, security, …
+│   ├── lib/animations/         fadeUp, staggerReveal, splitReveal, scaleIn,
+│   │                           parallax, horizontalScroll, magneticHover
+│   └── shared/                 Button, Section, ErrorBoundary, hooks
+└── docs/                       ARCHITECTURE.md (decision records) and README assets
 ```
 
-* **One AI request per message**, never automatic, send disabled while busy, double-submit blocked.
-* ~65 local knowledge entries (`src/data/knowledge/*`) cover your required FAQs, 15 troubleshooting guides, plans, billing, security and integrations.
-* Only the **top 3 relevant entries (≤ ~3 KB)** go to the model — never the whole knowledge base.
-* Answers cached in `localStorage` (24 h, 50 entries) for standalone questions.
-* If the AI fails: the exact message *"Redora AI is temporarily unable to process that request."* plus **Try Again / Browse Support Topics / Contact Support**, and the best local answer is still shown.
-* A server **response guard** replaces any "I don't know"-style reply with knowledge-based guidance and trims to ≤ 400 words.
-* Passwords, OTPs, recovery codes, API secrets, card numbers and CVVs are detected on client **and** server; the message is redacted, not sent, and the user is warned.
+📖 Full reasoning for each design choice is in [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 
-## Project structure
+<img src="docs/assets/divider.svg" width="100%" alt=""/>
 
+## 🛡️ Security and safety
+
+- **Secrets stay on the server.** Only `VITE_*` values reach the browser, and none are secrets.
+- **Credential detection in three places:** the composer (blocks sending), the orchestrator, and the API (returns `422`). Displayed text is redacted.
+- **The assistant never asks for** passwords, OTPs, recovery codes, API secrets or card security codes.
+- **Safe error handling:** raw provider errors are logged on the server and never returned to the client.
+- **Hardening:** Helmet headers, a 16 KB body cap, 500-character messages, per-IP rate limiting.
+- **Account compromise guidance:** change password, enable 2FA, review active sessions, contact support.
+
+## ♿ Accessibility and performance
+
+- Semantic landmarks, a skip link, full keyboard operation and an ARIA live chat log
+- `prefers-reduced-motion` is respected: GSAP only runs when motion is allowed, and horizontal storytelling becomes vertical on small screens
+- Pointer parallax only on fine pointers (no heavy effects on touch devices)
+- Animations use `transform` and `opacity` only. The background is pure CSS, with no video, canvas or particle engine
+- Fonts are self-hosted through Fontsource
+
+<img src="docs/assets/divider.svg" width="100%" alt=""/>
+
+## 🧪 Testing
+
+```bash
+npm test
 ```
-server/                    Express API (composition root: index.ts)
-  config/env.ts            validated env (only place process.env is read)
-  lib/                     logger (secret-redacting), AppError, retry
-  middleware/              errorHandler, rateLimiter, validateBody, cors, requestLogger
-  modules/ai/              AiProvider port + PollinationsProvider + factory
-  modules/chat/            routes → controller → ChatService → promptBuilder / responseGuard
-src/
-  domain/                  framework-free, shared by client AND server (contracts, retriever, router, safety)
-  data/                    redoraFacts.ts (single source of truth) + knowledge/* + redoraKnowledge.ts
-  services/chatApi.ts      HTTP adapter (zod-validated responses, timeout, typed errors)
-  features/<feature>/      chat, hero, demo, how-it-works, features, modules, plans, security, …
-  lib/animations/          fadeUp, staggerReveal, splitReveal, scaleIn, parallax, horizontalScroll, magneticHover
-  shared/                  Button, Section, ErrorBoundary, FormattedText, hooks
-docs/ARCHITECTURE.md       architecture decisions (ADRs)
-```
 
-## Environment
+| Area | What is verified |
+|---|---|
+| **Knowledge base** | Unique ids, resolvable related-topic links, all 11 categories, the four-part troubleshooting structure, price consistency |
+| **Retrieval and routing** | Your core FAQs resolve to the right entry and are answered locally; comparative questions go to the AI |
+| **Safety** | Passwords, OTPs, cards, CVVs, API secrets and recovery codes are caught, with no false alarms on normal questions |
+| **Orchestrator** | Local-first behavior, caching, warnings, and graceful failure with a fake API |
+| **Server** | Retry on transient errors, 502 and 504 mapping, validation, rate limiting and the response guard |
 
-See `.env.example`. Secrets (`POLLINATIONS_API_KEY`) exist **only** on the server; the browser calls `/api/chat`.
-### Optional: add a Pollinations key from the site
+> Not covered yet: UI and browser tests.
 
-The footer has a small **Pollinations API** button. It opens a dialog where a visitor can paste their own key.
-The key is kept in that browser's `localStorage` and sent as an `X-Pollinations-Key` header with `/api/chat` requests only;
-the server uses it for that request instead of `POLLINATIONS_API_KEY` and never stores or logs it. Remove it from the same dialog.
-With no key saved, behaviour is unchanged.
+## 🗂️ Editing the knowledge base
 
-`POLLINATIONS_API_URL` defaults to `https://gen.pollinations.ai/v1/chat/completions` (OpenAI-compatible); `POLLINATIONS_MODEL` defaults to `openai`.
+1. Add or change facts (prices, limits, contacts, integrations) in `src/data/redoraFacts.ts`. The UI and the answers both read from this file.
+2. Add or edit entries in `src/data/knowledge/`.
+3. Run `npm test` to confirm nothing contradicts itself.
 
-## Editing the knowledge base
+## 🗺️ Roadmap and known limits
 
-Add facts to `src/data/redoraFacts.ts` (prices, limits, contacts — used by both the UI and answers), then add or edit entries in `src/data/knowledge/`.
-`npm test` verifies unique ids, resolvable related-topic links, the four-part troubleshooting structure and price consistency.
+- [ ] Semantic search if the knowledge base grows well beyond a few hundred entries
+- [ ] Shared rate-limit store (Redis) for multi-instance deployments
+- [ ] Persist chat history across reloads
+- [ ] Lazy-load below-the-fold sections to trim the bundle
+- [ ] Playwright smoke tests for the UI
 
-## Accessibility & performance
+<img src="docs/assets/divider.svg" width="100%" alt=""/>
 
-Semantic landmarks, skip link, keyboard-operable everything, ARIA live chat log, visible focus, `prefers-reduced-motion` respected (GSAP only runs when motion is allowed; horizontal storytelling becomes vertical on mobile/reduced motion), pointer-parallax only on fine pointers. Animations use transform/opacity; background is CSS only (no canvas/3D engine/video). Fonts are self-hosted via Fontsource.
+## 📌 Important notes
 
-## Notes & assumptions
+- **Redora is fictional.** Prices, policies, URLs and email addresses are DEMO data and are not real commercial information.
+- Business is modeled as including everything in Pro. Free includes basic Slack, Google Drive and Google Calendar connections, and GitHub, Notion and Zapier start on Starter. These choices live in `src/data/redoraFacts.ts`.
 
-* The Business plan is treated as **including everything in Pro** (plus its own items); the Free plan includes basic Slack, Google Drive and Google Calendar connections; GitHub/Notion/Zapier start on Starter. These choices are encoded in `redoraFacts.ts`.
-* Muted text (`#626262`) is used only for tertiary hints; body copy uses `#A0A0A0`.
-* The rate limiter is in-memory (single instance). Use a shared store if you scale horizontally.
+## 👨‍💻 Author
+
+<div align="center">
+
+**Designed & Developed by Muhammad Umar**
+*AI Application Developer*
+
+<a href="https://youtu.be/ckty7wyxhMA"><img src="https://img.shields.io/badge/Watch-Video-E50914?style=for-the-badge&logo=youtube&logoColor=white&labelColor=0C0C0C" alt="YouTube video"/></a>
+<a href="https://github.com/CraftxCode/Redora_AI"><img src="https://img.shields.io/badge/Source-GitHub-FF3030?style=for-the-badge&logo=github&logoColor=white&labelColor=0C0C0C" alt="GitHub repository"/></a>
+
+<br/>
+
+⭐ **If this project helped you, please star the repo.** ⭐
+
+<img src="docs/assets/divider.svg" width="100%" alt=""/>
+
+<sub>An independent AI application engineering project · © 2026 Redora AI</sub>
+
+</div>
