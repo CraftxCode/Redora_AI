@@ -195,32 +195,8 @@ The app works **without any API key**: common questions are answered locally, an
 ## 🏗️ Architecture
 
 Dependencies point one way only. The `domain` and `data` layers are framework-free and compiled into **both** the browser and the server, so the retriever, router, contracts and safety rules exist exactly once.
+<img src="docs/assets/artitecture.png" alt="Redora AI system architecture" width="100%"/>
 
-```mermaid
-flowchart LR
-    subgraph Browser["🌐 Browser · React + Vite"]
-        UI[Features / UI] --> ST[Chat state]
-        ST --> OR[ChatOrchestrator]
-        OR --> CA[Cache + API client]
-    end
-    subgraph Server["🖥️ Server · Express"]
-        PL[Pipeline<br/>helmet · limits · zod] --> CS[ChatService]
-        CS --> PR[AiProvider port]
-        CS --> RG[Response guard]
-    end
-    subgraph Shared["🧩 Shared domain + knowledge base"]
-        SH[Contracts · retriever · router · safety rules]
-    end
-    CA <-- "POST /api/chat" --> PL
-    PR <--> PO[(Pollinations AI)]
-    Browser -.uses.- Shared
-    Server -.uses.- Shared
-
-    classDef box fill:#111,stroke:#E50914,color:#F5F5F5;
-    classDef ext fill:#2a0a0d,stroke:#FF3030,color:#fff;
-    class UI,ST,OR,CA,PL,CS,PR,RG,SH box;
-    class PO ext;
-```
 
 ### 📁 Project structure
 
