@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="340" viewBox="0 0 1280 340" role="img" aria-label="Redora AI: Support that actually understands">
+  <defs>
+    <radialGradient id="glow" cx="82%" cy="20%" r="70%">
+      <stop offset="0%" stop-color="#E50914" stop-opacity="0.55"><animate attributeName="stop-opacity" values="0.35;0.7;0.35" dur="5s" repeatCount="indefinite"/></stop>
+      <stop offset="100%" stop-color="#050505" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="8%" cy="95%" r="55%">
+      <stop offset="0%" stop-color="#700008" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#050505" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="title" x1="0" x2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/><stop offset="55%" stop-color="#FFFFFF"/><stop offset="100%" stop-color="#FF6666"/>
+    </linearGradient>
+    <linearGradient id="sweep" x1="0" x2="1">
+      <stop offset="0%" stop-color="#E50914" stop-opacity="0"/><stop offset="50%" stop-color="#FF3030"/><stop offset="100%" stop-color="#E50914" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#ffffff" stroke-opacity="0.045" stroke-width="1"/>
+    </pattern>
+    <clipPath id="c"><rect width="1280" height="340" rx="22"/></clipPath>
+  </defs>
+  <g clip-path="url(#c)">
+    <rect width="1280" height="340" fill="#050505"/>
+    <rect width="1280" height="340" fill="url(#glow)"/>
+    <rect width="1280" height="340" fill="url(#glow2)"/>
+    <rect width="1280" height="340" fill="url(#grid)"/>
+    <g fill="none" stroke="#E50914" transform="translate(1040 150)">
+      <circle r="150" stroke-opacity="0.22" stroke-width="1.2"><animateTransform attributeName="transform" type="scale" values="0.96;1.05;0.96" dur="7s" repeatCount="indefinite"/></circle>
+      <circle r="105" stroke-opacity="0.35" stroke-width="1.5" stroke-dasharray="6 14"><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="40s" repeatCount="indefinite"/></circle>
+      <circle r="62" stroke-opacity="0.6" stroke-width="2"><animateTransform attributeName="transform" type="rotate" from="360" to="0" dur="26s" repeatCount="indefinite"/></circle>
+      <circle r="16" fill="#FF3030" stroke="none"><animate attributeName="r" values="14;19;14" dur="2.4s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0.65;1" dur="2.4s" repeatCount="indefinite"/></circle>
+    </g>
+    <g fill="#FF6666">
+      <circle cx="140" cy="60" r="2"><animate attributeName="cy" values="60;40;60" dur="6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.2;0.9;0.2" dur="6s" repeatCount="indefinite"/></circle>
+      <circle cx="620" cy="280" r="1.6"><animate attributeName="cy" values="280;258;280" dur="7s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.2;0.9;0.2" dur="7s" repeatCount="indefinite"/></circle>
+      <circle cx="860" cy="70" r="2.2"><animate attributeName="cy" values="70;48;70" dur="8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.2;0.9;0.2" dur="8s" repeatCount="indefinite"/></circle>
+      <circle cx="380" cy="300" r="1.8"><animate attributeName="cy" values="300;276;300" dur="5.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.2;0.9;0.2" dur="5.5s" repeatCount="indefinite"/></circle>
+    </g>
+    <text x="64" y="64" font-family="'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" letter-spacing="5" fill="#A0A0A0">AI CUSTOMER SUPPORT PLATFORM</text>
+    <text x="64" y="176" font-family="Georgia,'Times New Roman',serif" font-size="124" fill="url(#title)" letter-spacing="-3">Redora <tspan font-style="italic" fill="#FF3030">AI</tspan></text>
+    <text x="68" y="232" font-family="Georgia,'Times New Roman',serif" font-style="italic" font-size="36" fill="#FF6666">Support that actually understands.</text>
+    <g font-family="'Segoe UI',Helvetica,Arial,sans-serif" font-size="15" fill="#F5F5F5" letter-spacing="3">
+      <text x="68" y="290">ASK.</text><text x="140" y="290">UNDERSTAND.</text><text x="290" y="290" fill="#FF3030">SOLVE.</text>
+    </g>
+    <rect x="0" y="334" width="1280" height="3" fill="url(#sweep)"><animate attributeName="opacity" values="0.4;1;0.4" dur="3s" repeatCount="indefinite"/></rect>
+  </g>
+  <rect x="1" y="1" width="1278" height="338" rx="22" fill="none" stroke="#E50914" stroke-opacity="0.45"/>
+</svg>
