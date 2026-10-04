@@ -20,7 +20,7 @@ export interface ChatServiceDeps {
 export class ChatService {
   constructor(private readonly deps: ChatServiceDeps) {}
 
-  async reply({ message, history }: ChatRequest): Promise<ChatResponse> {
+  async reply({ message, history }: ChatRequest, options: { apiKey?: string | undefined } = {}): Promise<ChatResponse> {
     const { provider, retriever, logger, maxTokens } = this.deps;
 
     // Short follow-ups ("and the second one?") need the previous question for retrieval.
@@ -31,7 +31,7 @@ export class ChatService {
     let raw: string;
     try {
       raw = await withRetry(
-        () => provider.complete({ messages: buildMessages(message, history, hits.map((h) => h.entry)), maxTokens }),
+        () => provider.complete({ messages: buildMessages(message, history, hits.map((h) => h.entry)), maxTokens, apiKey: options.apiKey }),
         {
           retries: 1,
           delayMs: this.deps.retryDelayMs ?? 400,

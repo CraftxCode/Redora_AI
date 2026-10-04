@@ -17,7 +17,7 @@ export function Faq() {
   const base = useId();
   return (
     <Section id="faq" labelledBy="faq-title">
-      <div className="grid gap-14 lg:grid-cols-[1fr_1.5fr]">
+      <div className="grid gap-10 lg:grid-cols-[1fr_1.5fr] lg:gap-14">
         <SectionHeading id="faq-title" title="Questions, answered." />
         <ul data-stagger className="divide-y divide-line-1 border-y border-line-1">
           {FAQS.map((f, i) => {
@@ -25,7 +25,7 @@ export function Faq() {
             return (
               <li key={f.q}>
                 <h3>
-                  <button type="button" aria-expanded={isOpen} aria-controls={`${base}-${i}`} onClick={() => setOpen(isOpen ? null : i)} className="flex w-full items-center justify-between gap-6 py-6 text-left text-lg">
+                  <button type="button" aria-expanded={isOpen} aria-controls={`${base}-${i}`} onClick={() => setOpen(isOpen ? null : i)} className="flex w-full items-center justify-between gap-6 py-5 text-left text-base transition-colors hover:text-crimson-soft sm:py-6 sm:text-lg">
                     {f.q}
                     <Plus aria-hidden="true" className={cn('h-5 w-5 shrink-0 text-crimson-soft transition-transform duration-500', isOpen && 'rotate-[135deg]')} />
                   </button>

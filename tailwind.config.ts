@@ -2,6 +2,8 @@ import type { Config } from 'tailwindcss';
 
 /** Design tokens for the black + crimson system. Red is an accent, never a surface. */
 export default {
+  // Hover styles apply only on devices that can hover, so touch screens never get a stuck hover state.
+  future: { hoverOnlyWhenSupported: true },
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
     extend: {
@@ -10,7 +12,7 @@ export default {
         surface: { 1: '#111111', 2: '#151515', 3: '#191919' },
         line: { 1: '#242424', 2: '#303030' },
         crimson: { DEFAULT: '#E50914', bright: '#FF3030', soft: '#FF6666', deep: '#700008' },
-        fg: { DEFAULT: '#F5F5F5', dim: '#A0A0A0', mute: '#626262' },
+        fg: { DEFAULT: '#F5F5F5', dim: '#A0A0A0', mute: '#858585' },
       },
       fontFamily: {
         display: ['"Instrument Serif"', 'Georgia', 'serif'],
@@ -26,6 +28,8 @@ export default {
         ring: { '0%': { transform: 'scale(.96)', opacity: '.5' }, '100%': { transform: 'scale(1.04)', opacity: '.15' } },
         blink: { '50%': { opacity: '0' } },
         fadeIn: { from: { opacity: '0', transform: 'translateY(6px)' }, to: { opacity: '1', transform: 'translateY(0)' } },
+        overlayIn: { from: { opacity: '0' }, to: { opacity: '1' } },
+        sheetIn: { from: { opacity: '0', transform: 'translateY(16px) scale(.98)' }, to: { opacity: '1', transform: 'translateY(0) scale(1)' } },
         dots: { '0%,80%,100%': { transform: 'translateY(0)', opacity: '.4' }, '40%': { transform: 'translateY(-3px)', opacity: '1' } },
       },
       animation: {
@@ -34,6 +38,8 @@ export default {
         ring: 'ring 7s ease-in-out infinite alternate',
         blink: 'blink 1s steps(1) infinite',
         dots: 'dots 1.2s ease-in-out infinite',
+        'overlay-in': 'overlayIn .2s ease-out both',
+        'sheet-in': 'sheetIn .3s cubic-bezier(.2,.8,.2,1) both',
       },
     },
   },

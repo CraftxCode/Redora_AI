@@ -8,7 +8,7 @@ export function Section({ id, className, children, labelledBy }: SectionProps) {
   const ref = useRef<HTMLElement>(null);
   useReveal(ref);
   return (
-    <section ref={ref} id={id} aria-labelledby={labelledBy} className={cn('relative px-5 py-24 sm:px-8 md:py-36', className)}>
+    <section ref={ref} id={id} aria-labelledby={labelledBy} className={cn('relative px-5 py-20 sm:px-8 sm:py-24 lg:py-32', className)}>
       <div className="mx-auto w-full max-w-7xl">{children}</div>
     </section>
   );
@@ -20,7 +20,7 @@ export function SectionHeading({ id, title, description, className }: HeadingPro
   return (
     <header className={cn('max-w-3xl', className)} data-reveal>
       <h2 id={id} className="display-lg text-balance">{title}</h2>
-      {description && <p className="mt-6 max-w-xl text-lg leading-relaxed text-fg-dim">{description}</p>}
+      {description && <p className="mt-5 max-w-xl text-base leading-relaxed text-fg-dim sm:mt-6 sm:text-lg">{description}</p>}
     </header>
   );
 }

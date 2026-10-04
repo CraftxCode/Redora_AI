@@ -13,7 +13,7 @@ const completionSchema = z.object({
   choices: z.array(z.object({ message: z.object({ content: z.string().nullable() }) })).min(1),
 });
 
-/** OpenAI-compatible Pollinations client. The key stays on the server and is optional (anonymous tier). */
+/** OpenAI-compatible Pollinations client. The key stays on the server and is optional (anonymous tier); a per-request key may override it. */
 export class PollinationsProvider implements AiProvider {
   readonly name = 'pollinations';
 
@@ -22,7 +22,8 @@ export class PollinationsProvider implements AiProvider {
     private readonly fetchImpl: typeof fetch = fetch,
   ) {}
 
-  async complete({ messages, maxTokens }: AiCompletionRequest): Promise<string> {
+  async complete({ messages, maxTokens, apiKey }: AiCompletionRequest): Promise<string> {
+    const key = apiKey ?? this.config.apiKey;
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), this.config.timeoutMs);
     try {
@@ -31,7 +32,7 @@ export class PollinationsProvider implements AiProvider {
         signal: controller.signal,
         headers: {
           'Content-Type': 'application/json',
-          ...(this.config.apiKey ? { Authorization: `Bearer ${this.config.apiKey}` } : {}),
+          ...(key ? { Authorization: `Bearer ${key}` } : {}),
         },
         body: JSON.stringify({ model: this.config.model, messages, max_tokens: maxTokens, temperature: 0.4, stream: false }),
       });

@@ -51,7 +51,7 @@ export function ChatLauncher() {
           type="button"
           onClick={openPanel}
           aria-label="Open Redora AI support chat"
-          className="group fixed bottom-5 right-5 z-50 flex items-center gap-3 rounded-full border border-crimson/50 bg-ink-900/90 py-3 pl-4 pr-5 text-sm font-medium shadow-glow backdrop-blur transition-transform duration-300 hover:-translate-y-1 sm:bottom-6 sm:right-6"
+          className="group fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] right-[max(1.25rem,env(safe-area-inset-right))] z-50 flex min-h-[48px] items-center gap-3 rounded-full border border-crimson/50 bg-ink-900/90 py-3 pl-4 pr-5 text-sm font-medium shadow-glow backdrop-blur transition-[transform,border-color,background-color] duration-300 hover:-translate-y-1 hover:border-crimson hover:bg-ink-900 active:translate-y-0 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crimson-soft focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 sm:bottom-6 sm:right-6"
         >
           <span className="relative grid h-8 w-8 place-items-center rounded-full bg-crimson">
             <MessageSquare aria-hidden="true" className="h-4 w-4" />

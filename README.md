@@ -67,6 +67,13 @@ docs/ARCHITECTURE.md       architecture decisions (ADRs)
 ## Environment
 
 See `.env.example`. Secrets (`POLLINATIONS_API_KEY`) exist **only** on the server; the browser calls `/api/chat`.
+### Optional: add a Pollinations key from the site
+
+The footer has a small **Pollinations API** button. It opens a dialog where a visitor can paste their own key.
+The key is kept in that browser's `localStorage` and sent as an `X-Pollinations-Key` header with `/api/chat` requests only;
+the server uses it for that request instead of `POLLINATIONS_API_KEY` and never stores or logs it. Remove it from the same dialog.
+With no key saved, behaviour is unchanged.
+
 `POLLINATIONS_API_URL` defaults to `https://gen.pollinations.ai/v1/chat/completions` (OpenAI-compatible); `POLLINATIONS_MODEL` defaults to `openai`.
 
 ## Editing the knowledge base

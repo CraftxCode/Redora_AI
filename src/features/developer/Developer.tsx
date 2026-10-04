@@ -27,10 +27,10 @@ export function Developer() {
 
   return (
     <Section id="developer" labelledBy="dev-title">
-      <div className="grid items-center gap-14 lg:grid-cols-[1.3fr_1fr]">
+      <div className="grid items-center gap-12 lg:grid-cols-[1.3fr_1fr] lg:gap-14">
         <div data-reveal>
           <h2 id="dev-title" className="display-lg">Built by {SITE.developer.name}.</h2>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-fg-dim">
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-fg-dim sm:mt-6 sm:text-lg">
             Redora AI is an AI application engineering project created by {SITE.developer.name} to demonstrate modern frontend design, AI integration, API architecture and customer-support automation.
           </p>
           <ul className="mt-8 flex flex-wrap gap-2" aria-label="Technology">
@@ -38,10 +38,10 @@ export function Developer() {
           </ul>
         </div>
         <div ref={cardRef} data-reveal>
-          <div data-float className="glass-strong relative overflow-hidden rounded-3xl p-8 shadow-panel">
+          <div data-float className="glass-strong relative overflow-hidden rounded-2xl p-6 shadow-panel sm:rounded-3xl sm:p-8">
             <div aria-hidden="true" className="absolute -right-12 -top-12 h-44 w-44 rounded-full bg-crimson/30 blur-3xl" />
             <p className="text-xs text-fg-mute">Designer &amp; developer</p>
-            <p className="mt-3 font-display text-5xl leading-none">{SITE.developer.name}</p>
+            <p className="mt-3 font-display text-4xl leading-none sm:text-5xl">{SITE.developer.name}</p>
             <p className="mt-3 text-fg-dim">{SITE.developer.role}</p>
             <dl className="mt-8 space-y-3 border-t border-line-1 pt-6 text-sm">
               <div className="flex justify-between gap-4"><dt className="text-fg-mute">Project</dt><dd>{SITE.developer.project}</dd></div>

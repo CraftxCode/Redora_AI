@@ -10,10 +10,10 @@ type AsButton = Common & ButtonHTMLAttributes<HTMLButtonElement> & { href?: unde
 type AsLink = Common & AnchorHTMLAttributes<HTMLAnchorElement> & { href: string };
 
 const base =
-  'group inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium tracking-wide transition-[transform,box-shadow,background-color,border-color] duration-300 hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:hover:translate-y-0';
+  'group inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium tracking-wide transition-[transform,box-shadow,background-color,border-color,opacity] duration-300 ease-out hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crimson-soft focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 disabled:pointer-events-none disabled:translate-y-0 disabled:opacity-50 disabled:shadow-none';
 const variants: Record<Variant, string> = {
-  primary: 'bg-crimson text-white shadow-glow hover:bg-crimson-bright',
-  ghost: 'border border-line-2 bg-white/[0.02] text-fg hover:border-crimson/60 hover:bg-white/[0.05]',
+  primary: 'bg-crimson text-white shadow-glow hover:bg-crimson-bright active:bg-crimson',
+  ghost: 'border border-line-2 bg-white/[0.02] text-fg hover:border-crimson/60 hover:bg-white/[0.05] active:bg-white/[0.08]',
 };
 
 export function Button(props: AsButton | AsLink) {

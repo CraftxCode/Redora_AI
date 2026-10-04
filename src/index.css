@@ -4,28 +4,44 @@
 
 @layer base {
   :root { color-scheme: dark; }
-  html { scroll-behavior: smooth; background: #050505; -webkit-text-size-adjust: 100%; }
-  body { @apply bg-ink-950 font-sans text-fg antialiased; overflow-x: hidden; text-rendering: optimizeLegibility; }
+  html { scroll-behavior: smooth; background: #050505; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body { @apply bg-ink-950 font-sans text-fg antialiased; overflow-x: hidden; text-rendering: optimizeLegibility; min-height: 100dvh; -webkit-tap-highlight-color: transparent; }
+  h1, h2, h3 { text-wrap: balance; }
+  p { text-wrap: pretty; }
+  img { -webkit-user-drag: none; }
   ::selection { background: #E50914; color: #fff; }
   section[id] { scroll-margin-top: 64px; }
-  :focus-visible { outline: 2px solid #FF6666; outline-offset: 3px; border-radius: 6px; }
+  :focus-visible { outline: 2px solid #FF6666; outline-offset: 3px; }
+  :focus:not(:focus-visible) { outline: none; }
   button { cursor: pointer; }
   button:disabled { cursor: not-allowed; }
+  * { scrollbar-width: thin; scrollbar-color: #303030 transparent; }
   ::-webkit-scrollbar { width: 8px; height: 8px; }
   ::-webkit-scrollbar-thumb { background: #303030; border-radius: 8px; }
+  ::-webkit-scrollbar-thumb:hover { background: #3d3d3d; }
 }
 
 @layer components {
   .glass { background: rgba(17, 17, 17, 0.62); backdrop-filter: blur(18px) saturate(140%); -webkit-backdrop-filter: blur(18px) saturate(140%); border: 1px solid #242424; }
   .glass-strong { background: rgba(10, 10, 10, 0.82); backdrop-filter: blur(24px) saturate(150%); -webkit-backdrop-filter: blur(24px) saturate(150%); border: 1px solid #303030; }
   .display { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; letter-spacing: -0.025em; line-height: 0.92; }
-  .display-xl { @apply display; font-size: clamp(3.4rem, 11.5vw, 10.5rem); }
-  .display-lg { @apply display; font-size: clamp(2.6rem, 6.4vw, 5.8rem); }
-  .display-md { @apply display; font-size: clamp(2rem, 4vw, 3.4rem); line-height: 1; }
+  .display-xl { @apply display; font-size: clamp(3rem, 11.5vw, 10.5rem); line-height: 0.95; }
+  .display-lg { @apply display; font-size: clamp(2.4rem, 6.4vw, 5.8rem); line-height: 1; }
+  .display-md { @apply display; font-size: clamp(2rem, 4vw, 3.4rem); line-height: 1.05; }
   .split-word { display: inline-block; overflow: hidden; vertical-align: top; padding: 0.04em 0.08em 0.14em 0; margin-right: -0.02em; }
   .split-inner { display: inline-block; will-change: transform; }
-  .card-lift { transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.35s, box-shadow 0.35s; }
-  .card-lift:hover { transform: translateY(-4px); border-color: rgba(229, 9, 20, 0.55); box-shadow: 0 0 0 1px rgba(229, 9, 20, 0.25), 0 24px 60px -28px rgba(229, 9, 20, 0.55); }
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .glass { background: rgba(17, 17, 17, 0.94); }
+    .glass-strong { background: rgba(10, 10, 10, 0.96); }
+  }
+  .card-lift { transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.35s, box-shadow 0.35s, background-color 0.35s; }
+  /* Lift only where hover exists; touch screens get a press state instead. */
+  @media (hover: hover) {
+    .card-lift:hover:not(:disabled) { transform: translateY(-4px); border-color: rgba(229, 9, 20, 0.55); box-shadow: 0 0 0 1px rgba(229, 9, 20, 0.25), 0 24px 60px -28px rgba(229, 9, 20, 0.55); }
+  }
+  .card-lift:focus-visible { border-color: rgba(229, 9, 20, 0.55); }
+  button.card-lift:active:not(:disabled) { transform: translateY(0) scale(0.985); }
+  .card-lift:disabled { box-shadow: none; }
   .grain { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
   .scroll-x { overflow-x: auto; scrollbar-width: none; }
   .scroll-x::-webkit-scrollbar { display: none; }

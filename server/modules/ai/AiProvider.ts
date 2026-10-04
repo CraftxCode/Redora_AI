@@ -7,6 +7,8 @@ export interface AiMessage {
 export interface AiCompletionRequest {
   messages: AiMessage[];
   maxTokens: number;
+  /** Optional key for this request only; falls back to the server's configured key. */
+  apiKey?: string | undefined;
 }
 
 export interface AiProvider {

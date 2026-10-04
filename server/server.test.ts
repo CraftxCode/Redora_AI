@@ -89,6 +89,37 @@ describe('POST /api/chat', () => {
   });
 });
 
+describe('optional per-request Pollinations key', () => {
+  const recording = () => {
+    const keys: Array<string | undefined> = [];
+    const provider: AiProvider = {
+      name: 'recording',
+      async complete(request) {
+        keys.push(request.apiKey);
+        return 'Pro costs $19/month.';
+      },
+    };
+    return { provider, keys };
+  };
+  const send = (base: string, headers: Record<string, string> = {}) =>
+    fetch(`${base}/api/chat`, { method: 'POST', headers: { 'Content-Type': 'application/json', ...headers }, body: JSON.stringify({ message: 'How much is the Pro plan?' }) });
+
+  it('passes a valid X-Pollinations-Key to the provider for that request only', async () => {
+    const { provider, keys } = recording();
+    const { base } = await boot(provider);
+    expect((await send(base, { 'X-Pollinations-Key': 'sk_test_1234567890' })).status).toBe(200);
+    expect((await send(base)).status).toBe(200);
+    expect(keys).toEqual(['sk_test_1234567890', undefined]);
+  });
+
+  it('ignores a malformed key and falls back to the server configuration', async () => {
+    const { provider, keys } = recording();
+    const { base } = await boot(provider);
+    expect((await send(base, { 'X-Pollinations-Key': 'too short' })).status).toBe(200);
+    expect(keys).toEqual([undefined]);
+  });
+});
+
 describe('responseGuard', () => {
   const hits = knowledgeBase.retrieve('reset password').hits;
   it('replaces "I don\'t know" replies with useful guidance', () => {

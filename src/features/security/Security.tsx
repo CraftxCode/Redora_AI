@@ -13,7 +13,7 @@ const ITEMS = [
 export function Security() {
   return (
     <Section id="security" labelledBy="security-title">
-      <div className="grid gap-14 lg:grid-cols-[1fr_1.4fr]">
+      <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-14">
         <div>
           <SectionHeading id="security-title" title="The assistant never asks for your password." description="Redora AI will not request passwords, one-time codes, recovery codes, API secrets or card security codes. If you paste one, it warns you and stops." />
           <p data-reveal className="mt-8 max-w-md rounded-2xl border border-crimson/30 bg-crimson/[0.06] p-5 text-sm leading-relaxed text-fg-dim">
@@ -22,7 +22,7 @@ export function Security() {
         </div>
         <ul data-stagger className="grid gap-4 sm:grid-cols-2">
           {ITEMS.map(({ icon: Icon, title, body }) => (
-            <li key={title} className="card-lift rounded-3xl border border-line-1 bg-surface-1 p-6">
+            <li key={title} className="card-lift rounded-2xl border border-line-1 bg-surface-1 p-6 sm:rounded-3xl">
               <Icon aria-hidden="true" className="h-5 w-5 text-crimson-soft" />
               <h3 className="mt-6 text-lg font-medium">{title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-fg-dim">{body}</p>

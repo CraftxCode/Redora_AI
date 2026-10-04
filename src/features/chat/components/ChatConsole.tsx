@@ -47,19 +47,19 @@ export function ChatConsole({ variant, live = true, onClose, autoFocus, classNam
         </div>
         <div className="flex items-center gap-1">
           {!pristine && (
-            <button type="button" onClick={chat.reset} aria-label="Start a new conversation" className="grid h-8 w-8 place-items-center rounded-full text-fg-dim transition-colors hover:bg-white/5 hover:text-fg">
+            <button type="button" onClick={chat.reset} aria-label="Start a new conversation" className="grid h-9 w-9 place-items-center rounded-full text-fg-dim transition-[background-color,color,transform] hover:bg-white/5 hover:text-fg active:scale-90">
               <RotateCcw aria-hidden="true" className="h-4 w-4" />
             </button>
           )}
           {onClose && (
-            <button type="button" onClick={onClose} aria-label="Close Redora AI" className="grid h-8 w-8 place-items-center rounded-full text-fg-dim transition-colors hover:bg-white/5 hover:text-fg">
+            <button type="button" onClick={onClose} aria-label="Close Redora AI" className="grid h-9 w-9 place-items-center rounded-full text-fg-dim transition-[background-color,color,transform] hover:bg-white/5 hover:text-fg active:scale-90">
               <X aria-hidden="true" className="h-4 w-4" />
             </button>
           )}
         </div>
       </header>
 
-      <div ref={scrollRef} className={cn('min-h-0 flex-1 overflow-y-auto px-4 py-4', variant === 'embedded' ? 'h-[420px]' : '')}>
+      <div ref={scrollRef} className={cn('min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 py-4', variant === 'embedded' ? 'h-[400px] sm:h-[460px]' : '')}>
         <ol
           ref={logRef}
           role="log"

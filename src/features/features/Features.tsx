@@ -16,12 +16,12 @@ export function Features() {
   return (
     <Section id="features" labelledBy="features-title">
       <SectionHeading id="features-title" title="Built to answer, not to deflect." description="Eight things the assistant does differently." />
-      <ul data-stagger className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <ul data-stagger className="mt-12 grid gap-4 sm:mt-16 sm:grid-cols-2 lg:grid-cols-4">
         {FEATURES.map(({ icon: Icon, title, body, span }) => (
-          <li key={title} className={`card-lift group relative overflow-hidden rounded-3xl border border-line-1 bg-surface-1 p-7 ${span ?? ''}`}>
+          <li key={title} className={`card-lift group relative overflow-hidden rounded-2xl border border-line-1 bg-surface-1 p-6 sm:rounded-3xl sm:p-7 ${span ?? ''}`}>
             <div aria-hidden="true" className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-crimson/0 blur-3xl transition-colors duration-500 group-hover:bg-crimson/25" />
             <Icon aria-hidden="true" className="h-6 w-6 text-crimson-soft" />
-            <h3 className="mt-10 font-display text-3xl leading-none">{title}</h3>
+            <h3 className="mt-8 font-display text-3xl leading-none sm:mt-10">{title}</h3>
             <p className="mt-3 text-sm leading-relaxed text-fg-dim">{body}</p>
           </li>
         ))}

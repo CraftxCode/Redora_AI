@@ -7,7 +7,7 @@ export const createCors = (allowed: readonly string[]): RequestHandler => (req, 
     res.setHeader('Access-Control-Allow-Origin', origin);
     res.setHeader('Vary', 'Origin');
     res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-Pollinations-Key');
     if (req.method === 'OPTIONS') return void res.sendStatus(204);
   }
   return next();

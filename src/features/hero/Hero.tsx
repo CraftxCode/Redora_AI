@@ -36,24 +36,24 @@ export function Hero() {
   });
 
   return (
-    <section ref={ref} id="home" aria-labelledby="hero-title" className="relative flex min-h-[100svh] items-center overflow-hidden px-5 pb-20 pt-28 sm:px-8">
+    <section ref={ref} id="home" aria-labelledby="hero-title" className="relative flex min-h-[100svh] items-center overflow-hidden px-5 pb-16 pt-28 sm:px-8 sm:pb-20 sm:pt-32">
       <div data-hero-glow aria-hidden="true" className="absolute right-[-10%] top-[10%] h-[44rem] w-[44rem] rounded-full bg-crimson/20 blur-[140px]" />
-      <div className="relative mx-auto grid w-full max-w-7xl items-center gap-14 lg:grid-cols-[1.25fr_1fr]">
+      <div className="relative mx-auto grid w-full max-w-7xl items-center gap-10 sm:gap-14 lg:grid-cols-[1.25fr_1fr]">
         <div>
-          <p data-hero-fade className="mb-6 inline-flex items-center gap-2 rounded-full border border-line-2 bg-white/[0.02] px-4 py-1.5 text-[0.7rem] font-medium tracking-[0.2em] text-fg-dim">
+          <p data-hero-fade className="mb-5 inline-flex items-center gap-2 rounded-full border border-line-2 bg-white/[0.02] px-3.5 py-1.5 text-[0.65rem] font-medium tracking-[0.16em] text-fg-dim sm:mb-6 sm:px-4 sm:text-[0.7rem] sm:tracking-[0.2em]">
             <span aria-hidden="true" className="h-1.5 w-1.5 animate-pulse-dot rounded-full bg-crimson-bright" />AI CUSTOMER SUPPORT PLATFORM
           </p>
-          <h1 id="hero-title" className="display-xl">
+          <h1 id="hero-title" className="display-xl lg:text-[clamp(4.5rem,9.2vw,9rem)]">
             <span className="block" data-split><SplitText text="Support that" /></span>
             <span className="block italic text-crimson-soft" data-split><SplitText text="actually understands." /></span>
           </h1>
-          <p aria-hidden="true" data-hero-fade className="mt-8 flex flex-wrap gap-x-5 font-display text-2xl text-fg-dim sm:text-3xl">
+          <p aria-hidden="true" data-hero-fade className="mt-6 flex flex-wrap gap-x-4 font-display text-xl text-fg-dim sm:mt-8 sm:gap-x-5 sm:text-3xl">
             <span>ASK.</span><span>UNDERSTAND.</span><span className="text-fg">SOLVE.</span>
           </p>
-          <p data-hero-fade className="mt-6 max-w-xl text-lg leading-relaxed text-fg-dim">
+          <p data-hero-fade className="mt-5 max-w-xl text-base leading-relaxed text-fg-dim sm:mt-6 sm:text-lg">
             Meet Redora AI — a fast, intelligent support assistant designed to answer product questions, guide users through problems and connect them with the right next step.
           </p>
-          <div data-hero-fade className="mt-10 flex flex-wrap gap-4">
+          <div data-hero-fade className="mt-8 flex flex-wrap gap-3 sm:mt-10 sm:gap-4">
             <Button onClick={openPanel}>ASK REDORA AI</Button>
             <Button variant="ghost" href="#features">EXPLORE FEATURES</Button>
           </div>
@@ -62,7 +62,7 @@ export function Hero() {
           <img
             src="/redora-robot.png"
             alt="Redora AI robot mascot"
-            className="relative w-full max-w-[540px] object-contain drop-shadow-[0_24px_60px_rgba(229,9,20,.2)]"
+            className="relative w-full max-w-[300px] object-contain sm:max-w-[420px] lg:max-w-[540px] drop-shadow-[0_24px_60px_rgba(229,9,20,.2)]"
             width="768"
             height="768"
             fetchPriority="high"

@@ -67,7 +67,7 @@ export function MessageBubble({ message, isLast, isActiveError, busy, onTopic, o
                 type="button"
                 disabled={busy}
                 onClick={() => onTopic(t.id, t.title)}
-                className="rounded-full border border-line-2 bg-white/[0.02] px-3 py-1 text-xs text-fg-dim transition-colors hover:border-crimson/60 hover:text-fg disabled:opacity-50"
+                className="rounded-full border border-line-2 bg-white/[0.02] px-3 py-1.5 text-xs text-fg-dim transition-[background-color,border-color,color,transform] hover:border-crimson/60 hover:text-fg active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {t.title}
               </button>
@@ -81,7 +81,7 @@ export function MessageBubble({ message, isLast, isActiveError, busy, onTopic, o
 
 function ActionButton({ children, icon, ...rest }: { children: string; icon: React.ReactNode } & React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
-    <button type="button" {...rest} className="inline-flex items-center gap-1.5 rounded-full border border-line-2 bg-ink-900/60 px-3 py-1.5 text-xs font-medium transition-colors hover:border-crimson/70 hover:bg-crimson/10 disabled:opacity-50">
+    <button type="button" {...rest} className="inline-flex items-center gap-1.5 rounded-full border border-line-2 bg-ink-900/60 px-3 py-2 text-xs font-medium transition-[background-color,border-color,transform] hover:border-crimson/70 hover:bg-crimson/10 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50">
       {icon}{children}
     </button>
   );

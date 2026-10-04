@@ -1,8 +1,10 @@
 import { clientConfig } from '@/config/env';
+import { POLLINATIONS_KEY_HEADER } from '@/domain/ai/pollinationsKey';
 import {
   API_ERROR_CODES, apiErrorSchema, chatResponseSchema,
   type ApiErrorCode, type ChatRequest, type ChatResponse,
 } from '@/domain/chat/contracts';
+import { getPollinationsKey } from '@/services/pollinationsKey';
 
 export type ChatApiErrorCode = ApiErrorCode | 'NETWORK' | 'TIMEOUT' | 'INVALID_RESPONSE' | 'ABORTED';
 
@@ -31,10 +33,12 @@ export class HttpChatApi implements ChatApi {
     const onAbort = () => controller.abort('aborted');
     signal?.addEventListener('abort', onAbort, { once: true });
 
+    const userKey = getPollinationsKey();
+
     try {
       const res = await this.fetchImpl(`${this.baseUrl}/api/chat`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', ...(userKey ? { [POLLINATIONS_KEY_HEADER]: userKey } : {}) },
         body: JSON.stringify(request),
         signal: controller.signal,
       });
