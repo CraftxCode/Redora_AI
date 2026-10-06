@@ -176,6 +176,16 @@ The app works **without any API key**: common questions are answered locally, an
 | `npm run build` | Typecheck and production build to `dist/` |
 | `npm start` | Express serves the API **and** the built site on `PORT` (default `8787`) |
 
+### 🚀 Deploy to Netlify
+
+This repository includes a `netlify.toml` for deploying the Vite site and API together:
+
+1. Install the project dependencies and deploy from this folder with the Netlify CLI, or connect the repository in the Netlify dashboard.
+2. Set `POLLINATIONS_API_KEY` in Netlify's environment variables if you want authenticated Pollinations requests. Keep it server-side; do not use a `VITE_` prefix.
+3. Deploy with `npx netlify-cli deploy --build` for a draft, or `npx netlify-cli deploy --build --prod` to publish.
+
+The `/api/*` endpoints are routed to a Netlify Function, and other routes fall back to the React app. Leave `VITE_API_BASE_URL` unset so the browser uses the same-origin API. The site and API use the same Netlify deployment, so no separate CORS configuration is needed.
+
 ### ⚙️ Environment variables
 
 | Variable | Default | Purpose |
