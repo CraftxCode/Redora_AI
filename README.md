@@ -4,6 +4,12 @@
 
 <br/>
 
+<a href="https://redora-ai.netlify.app/">
+  <img src="https://img.shields.io/badge/🔴_LIVE_PREVIEW-redora--ai.netlify.app-00D1B2?style=for-the-badge&labelColor=0C0C0C" alt="Live Preview"/>
+</a>
+
+<br/><br/>
+
 <a href="https://github.com/CraftxCode/Redora_AI">
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&duration=2800&pause=900&color=FF3030&center=true&vCenter=true&width=720&height=44&lines=ASK.;UNDERSTAND.;SOLVE.;Support+that+actually+understands." alt="Typing animation: Ask. Understand. Solve." />
 </a>
@@ -22,9 +28,14 @@
 
 <br/><br/>
 
+<sub>⚡ Local-first AI &nbsp;•&nbsp; 🛡️ Safety-first routing &nbsp;•&nbsp; 🎞️ Cinematic UI &nbsp;•&nbsp; 🚀 Netlify deployed</sub>
+
+<br/><br/>
+
+<a href="https://redora-ai.netlify.app/"><b>Live Preview</b></a> &nbsp;•&nbsp;
 <a href="#-watch-the-video"><b>Video</b></a> &nbsp;•&nbsp;
-<a href="#-quick-start"><b>Quick start</b></a> &nbsp;•&nbsp;
-<a href="#-how-a-message-is-answered"><b>How it works</b></a> &nbsp;•&nbsp;
+<a href="#-quick-start"><b>Quick Start</b></a> &nbsp;•&nbsp;
+<a href="#-how-a-message-is-answered"><b>How It Works</b></a> &nbsp;•&nbsp;
 <a href="#-architecture"><b>Architecture</b></a> &nbsp;•&nbsp;
 <a href="#-testing"><b>Tests</b></a> &nbsp;•&nbsp;
 <a href="#-author"><b>Author</b></a>
@@ -32,6 +43,18 @@
 </div>
 
 <img src="docs/assets/divider.svg" width="100%" alt=""/>
+
+<div align="center">
+
+<a href="https://redora-ai.netlify.app/"><img src="https://img.shields.io/badge/🚀_OPEN_LIVE_PREVIEW-00D1B2?style=for-the-badge&logo=netlify&logoColor=white&labelColor=0C0C0C" alt="Open Redora AI live preview"/></a>
+&nbsp;
+<a href="https://github.com/CraftxCode/Redora_AI"><img src="https://img.shields.io/badge/💻_VIEW_SOURCE-7C3AED?style=for-the-badge&logo=github&logoColor=white&labelColor=0C0C0C" alt="View Redora AI source code"/></a>
+&nbsp;
+<a href="https://youtu.be/ckty7wyxhMA"><img src="https://img.shields.io/badge/▶_WATCH_DEMO-E50914?style=for-the-badge&logo=youtube&logoColor=white&labelColor=0C0C0C" alt="Watch Redora AI demo"/></a>
+
+</div>
+
+<br/>
 
 ## 🎬 Watch the video
 
@@ -44,6 +67,26 @@
 <br/>
 
 <a href="https://youtu.be/ckty7wyxhMA"><img src="https://img.shields.io/badge/▶_Watch_on_YouTube-E50914?style=for-the-badge&logo=youtube&logoColor=white&labelColor=0C0C0C" alt="Watch on YouTube"/></a>
+
+</div>
+
+<img src="docs/assets/divider.svg" width="100%" alt=""/>
+
+## 🌐 Live Preview
+
+<div align="center">
+
+<a href="https://redora-ai.netlify.app/">
+  <img src="https://img.shields.io/badge/REDORA_AI-OPEN_LIVE_APP-00D1B2?style=for-the-badge&labelColor=0C0C0C&logo=netlify&logoColor=white" alt="Open Redora AI on Netlify"/>
+</a>
+
+<br/><br/>
+
+<a href="https://redora-ai.netlify.app/"><b>https://redora-ai.netlify.app/</b></a>
+
+<br/>
+
+<sub>Try the deployed Redora AI experience directly in your browser.</sub>
 
 </div>
 
@@ -71,6 +114,16 @@ It is a portfolio and educational project for **Redora**, a **fictional** digita
 </td>
 </tr>
 </table>
+
+<div align="center">
+
+### 🔗 Project Snapshot
+
+| 🌐 Live Preview | 💻 Source | 🎬 Demo | 🧪 Tests |
+|:---:|:---:|:---:|:---:|
+| [Open App](https://redora-ai.netlify.app/) | [GitHub](https://github.com/CraftxCode/Redora_AI) | [YouTube](https://youtu.be/ckty7wyxhMA) | **39 passing** |
+
+</div>
 
 <img src="docs/assets/divider.svg" width="100%" alt=""/>
 
@@ -144,7 +197,7 @@ npm install
 npm run dev
 ```
 
-Then open **http://localhost:5173**. The API runs on `http://localhost:8787`.
+Then open **http://localhost:5173** for the app. The local API runs on `http://localhost:8787`.
 
 The app works **without any API key**: common questions are answered locally, and the Pollinations anonymous tier is used for open-ended ones.
 
@@ -245,6 +298,8 @@ Redora_AI/
 - **Hardening:** Helmet headers, a 16 KB body cap, 500-character messages, per-IP rate limiting.
 - **Account compromise guidance:** change password, enable 2FA, review active sessions, contact support.
 
+<img src="docs/assets/divider.svg" width="100%" alt=""/>
+
 ## ♿ Accessibility and performance
 
 - Semantic landmarks, a skip link, full keyboard operation and an ARIA live chat log
@@ -271,11 +326,15 @@ npm test
 
 > Not covered yet: UI and browser tests.
 
+<img src="docs/assets/divider.svg" width="100%" alt=""/>
+
 ## 🗂️ Editing the knowledge base
 
 1. Add or change facts (prices, limits, contacts, integrations) in `src/data/redoraFacts.ts`. The UI and the answers both read from this file.
 2. Add or edit entries in `src/data/knowledge/`.
 3. Run `npm test` to confirm nothing contradicts itself.
+
+<img src="docs/assets/divider.svg" width="100%" alt=""/>
 
 ## 🗺️ Roadmap and known limits
 
@@ -292,6 +351,8 @@ npm test
 - **Redora is fictional.** Prices, policies, URLs and email addresses are DEMO data and are not real commercial information.
 - Business is modeled as including everything in Pro. Free includes basic Slack, Google Drive and Google Calendar connections, and GitHub, Notion and Zapier start on Starter. These choices live in `src/data/redoraFacts.ts`.
 
+<img src="docs/assets/divider.svg" width="100%" alt=""/>
+
 ## 👨‍💻 Author
 
 <div align="center">
@@ -299,8 +360,9 @@ npm test
 **Designed & Developed by Muhammad Umar**
 *AI Application Developer*
 
+<a href="https://redora-ai.netlify.app/"><img src="https://img.shields.io/badge/Live-Preview-00D1B2?style=for-the-badge&logo=netlify&logoColor=white&labelColor=0C0C0C" alt="Live preview"/></a>
 <a href="https://youtu.be/ckty7wyxhMA"><img src="https://img.shields.io/badge/Watch-Video-E50914?style=for-the-badge&logo=youtube&logoColor=white&labelColor=0C0C0C" alt="YouTube video"/></a>
-<a href="https://github.com/CraftxCode/Redora_AI"><img src="https://img.shields.io/badge/Source-GitHub-FF3030?style=for-the-badge&logo=github&logoColor=white&labelColor=0C0C0C" alt="GitHub repository"/></a>
+<a href="https://github.com/CraftxCode/Redora_AI"><img src="https://img.shields.io/badge/Source-GitHub-7C3AED?style=for-the-badge&logo=github&logoColor=white&labelColor=0C0C0C" alt="GitHub repository"/></a>
 
 <br/>
 
@@ -308,6 +370,10 @@ npm test
 
 <img src="docs/assets/divider.svg" width="100%" alt=""/>
 
-<sub>An independent AI application engineering project · © 2026 Redora AI</sub>
+<div align="center">
+
+<sub>🔴 An independent AI application engineering project · © 2026 Redora AI</sub>
+
+</div>
 
 </div>
